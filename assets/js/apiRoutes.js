@@ -3,6 +3,7 @@
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 const path = require('path');
 const notesData = require(path.join(__dirname, '../../db/db.json'));
+const fs = require("fs");
 
 // ROUTING
 
@@ -14,9 +15,10 @@ module.exports = (app) => {
   // ---------------------------------------------------------------------------
 
   app.get('/api/notes', (req, res) => res.json(notesData));
+  app.get('/api/notes:id'), (req,res) => res.json(notesData[Number(req.params.id)]);
 
   // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
+  // Below code handles when a user submits a note and thus submits data to the server.
   // In each of the below cases, when a user submits form data (a JSON object)
   // ...the JSON is pushed to the appropriate JavaScript array
   // (ex. User fills out a notes request... this data is then sent to the server...
@@ -24,19 +26,18 @@ module.exports = (app) => {
   // ---------------------------------------------------------------------------
 
   app.post('/api/notes', (req, res) => {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body parsing middleware
-    notesData.push(req.body);
+        let newNote = req.body;
+        let uniqueId = (notesData.length).toString();
+        console.log(uniqueId);
+        newNote.id = uniqueId;
+        notesData.push(newNote);
+        
+        fs.writeFileSync("./db/db.json", JSON.stringify(notesData), function(err) {
+            if (err) throw (err);        
+        }); 
+
+        res.json(notesData);  
   });
 
-  // I added this below code so you could clear out the table while working with the functionality.
-  // Don"t worry about it!
-
-  app.post('/api/clear', (req, res) => {
-    // Empty out the arrays of data
-    notesData.length = 0;
-
-    res.json({ ok: true });
-  });
 };
