@@ -54,5 +54,7 @@ module.exports = function(app) {
         if (err) throw err;
       });
     });
+    // Express response.status(204)
+    res.status(204).send();
   });
 };
