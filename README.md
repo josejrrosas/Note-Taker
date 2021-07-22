@@ -6,8 +6,6 @@ Given start code, this application is used as a Note Taker where you can write a
 ## Table of Contents:
 * [Description](#description)
 
-* [Installation](#installation)
-
 * [Usage](#usage)
 
 * [Contributors](#contributors) 
@@ -20,17 +18,11 @@ Given start code, this application is used as a Note Taker where you can write a
 
 * [Questions](#questions)
 
---------------------------------------------------------------------------
-
-## Installation
-In the terminal, run:
-
-npm install
 
 --------------------------------------------------------------------------
 
 ## Usage
-Type node assets/js/server.js in terminal
+Visit website
 
 
 --------------------------------------------------------------------------
@@ -46,18 +38,22 @@ Give the app a try.
 
 ## Website
 Github Repository: https://github.com/josejrrosas/Note-Taker
+
 Deployed Site: https://note-taker-heroku1.herokuapp.com/
 
 Screenshot:
-![Shows basic functionality](/dist/demo.gif)
+![Shows basic functionality](screenshot.png)
 
 --------------------------------------------------------------------------
 
 ## Technologies-Used:
 
 HTML
+
 Javascript
+
 node.js
+
 express.js
 
 --------------------------------------------------------------------------
